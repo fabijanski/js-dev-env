@@ -1,17 +1,5 @@
-body {
-  font-family: sans-serif;
+@import "../node_modules/normalize-scss/sass/normalize/import-now";
 
-  h1 {
-    color: purple;
-  }
-}
-
-table {
-  th {
-    color: red;
-  }
-
-  .table-header-id {
-    color: blue;
-  }
+h1 {
+  color: blue;
 }
