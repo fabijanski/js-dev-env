@@ -18,17 +18,18 @@ export default {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       inject: true
-    }),
+    })
   ],
   module: {
     rules: [
       {
         test: /\.scss$/,
         use: [
-          { loader: "style-loader" },
+          // remember about reversed positioning for loaders!!!
+          { loader: "style-loader" }, // Adds CSS to the DOM by injecting a <style> tag
           { loader: "css-loader" },
-          { loader: "sass-loader" },
-          { loader: "postcss-loader" }
+          { loader: "postcss-loader" }, // responsible for autoprefixer plugin
+          { loader: "sass-loader" }
         ]
       },
       {
@@ -38,7 +39,6 @@ export default {
           { loader: "babel-loader" }
         ]
       }
-
     ]
   }
 };

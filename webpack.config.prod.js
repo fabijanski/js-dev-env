@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 export default {
   devtool: 'source-map',
@@ -50,7 +51,11 @@ export default {
     // Minify JS
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true
-    })
+    }),
+    // Copy assets/images folder to /dist folder
+    new CopyWebpackPlugin([
+      { from: './src/assets/images', to: './assets/images'}
+    ])
   ],
   module: {
     rules: [
@@ -62,11 +67,11 @@ export default {
               loader: "css-loader", options: {sourceMap: true}
             },
             {
-              loader: "sass-loader", options: {sourceMap: true}
+              loader: "postcss-loader"
             },
             {
-              loader: "postcss-loader"
-            }
+              loader: "sass-loader"
+            },
           ],
           fallback: "style-loader"
         })
